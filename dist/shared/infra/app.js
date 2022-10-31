@@ -8,6 +8,7 @@ exports.app = void 0;
 /* eslint-disable @typescript-eslint/no-unused-vars */
 require("reflect-metadata");
 const AppError_1 = require("src/errors/AppError");
+require("express-async-errors");
 const express_1 = __importDefault(require("express"));
 const routes_1 = require("./routes");
 require("../container");

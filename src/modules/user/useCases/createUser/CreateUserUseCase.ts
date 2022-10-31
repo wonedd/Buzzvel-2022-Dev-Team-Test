@@ -3,6 +3,7 @@
 import { IUserRepository } from '@modules/user/repositories/IUserRepository';
 import { ICreateUserDTO } from '@modules/user/repositories/UserDTO';
 import { User } from '@prisma/client';
+import { AppError } from 'errors/AppError';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()
@@ -18,7 +19,7 @@ export class CreateUserUseCase {
     name,
   }: ICreateUserDTO): Promise<User> {
     if (!githubUrl || !linkedinUrl || !name) {
-      console.log('Missing data to create the qrcode', 403);
+      throw new AppError('Missing data to create the qrcode', 403);
     }
 
     const user = await this.userRepository.create({

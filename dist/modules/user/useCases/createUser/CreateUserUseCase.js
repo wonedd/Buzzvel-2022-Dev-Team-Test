@@ -22,6 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserUseCase = void 0;
+const AppError_1 = require("src/errors/AppError");
 const tsyringe_1 = require("tsyringe");
 let CreateUserUseCase = class CreateUserUseCase {
     constructor(userRepository) {
@@ -30,7 +31,7 @@ let CreateUserUseCase = class CreateUserUseCase {
     execute({ githubUrl, linkedinUrl, name, }) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!githubUrl || !linkedinUrl || !name) {
-                console.log('Missing data to create the qrcode', 403);
+                throw new AppError_1.AppError('Missing data to create the qrcode', 403);
             }
             const user = yield this.userRepository.create({
                 githubUrl,

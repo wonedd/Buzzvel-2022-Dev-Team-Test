@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import 'reflect-metadata';
-import { AppError } from 'errors/AppError';
+import { AppError } from 'src/errors/AppError';
 
 import express, { Request, Response, NextFunction } from 'express';
 import { routes } from './routes';

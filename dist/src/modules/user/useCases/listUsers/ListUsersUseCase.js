@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ListUsersUseCase = void 0;
-const AppError_1 = require("src/errors/AppError");
+const AppError_1 = require("errors/AppError");
 const tsyringe_1 = require("tsyringe");
 let ListUsersUseCase = class ListUsersUseCase {
     constructor(userRepository) {

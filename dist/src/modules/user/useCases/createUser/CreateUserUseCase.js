@@ -21,26 +21,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListUsersUseCase = void 0;
-const AppError_1 = require("src/errors/AppError");
+exports.CreateUserUseCase = void 0;
+const AppError_1 = require("errors/AppError");
 const tsyringe_1 = require("tsyringe");
-let ListUsersUseCase = class ListUsersUseCase {
+let CreateUserUseCase = class CreateUserUseCase {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
-    execute() {
+    execute({ githubUrl, linkedinUrl, name, }) {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = yield this.userRepository.list();
-            if (!users) {
-                throw new AppError_1.AppError('No users found');
+            if (!githubUrl || !linkedinUrl || !name) {
+                throw new AppError_1.AppError('Missing data to create the qrcode', 403);
             }
-            return users;
+            const user = yield this.userRepository.create({
+                githubUrl,
+                linkedinUrl,
+                name,
+            });
+            return user;
         });
     }
 };
-ListUsersUseCase = __decorate([
+CreateUserUseCase = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)('UsersRepository')),
     __metadata("design:paramtypes", [Object])
-], ListUsersUseCase);
-exports.ListUsersUseCase = ListUsersUseCase;
+], CreateUserUseCase);
+exports.CreateUserUseCase = CreateUserUseCase;

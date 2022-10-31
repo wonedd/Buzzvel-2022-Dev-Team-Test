@@ -7,10 +7,10 @@ exports.app = void 0;
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 require("reflect-metadata");
-const AppError_1 = require("src/errors/AppError");
+const AppError_1 = require("errors/AppError");
 const express_1 = __importDefault(require("express"));
 const routes_1 = require("./routes");
-require("../container");
+require("../../../shared/container");
 const app = (0, express_1.default)();
 exports.app = app;
 app.use(express_1.default.json());

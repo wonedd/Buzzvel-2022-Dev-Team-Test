@@ -1,6 +1,6 @@
-import { accountsRouter } from '@modules/account/infra/accounts.routes';
+import { usersRouter } from '@modules/user/infra/users.routes';
 import { Router } from 'express';
 
 export const routes = Router();
 
-routes.use('/accounts', accountsRouter);
+routes.use('/users', usersRouter);

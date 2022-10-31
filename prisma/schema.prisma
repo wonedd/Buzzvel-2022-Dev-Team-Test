@@ -10,10 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Account {
+model User {
   id        String   @id @default(uuid())
-  email     String
-  password  String
+  name      String
+  linkedinUrl String
+  githubUrl  String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }

@@ -1,1 +1,1 @@
-import '@modules/account/container';
+import '@modules/user/container';

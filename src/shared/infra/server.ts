@@ -1,6 +1,11 @@
+/* eslint-disable no-console */
+/* eslint-disable func-names */
 import { app } from './app';
 
-app.listen(3333, () => {
-  // eslint-disable-next-line no-console
-  console.log('Server is running on port 3333');
+app.listen(process.env.PORT || 3333, function () {
+  console.log(
+    'Express server listening on port %d in %s mode',
+    this.address().port,
+    app.settings.env,
+  );
 });

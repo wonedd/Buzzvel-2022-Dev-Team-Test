@@ -3,7 +3,7 @@
 import { IUserRepository } from '@modules/user/repositories/IUserRepository';
 import { ICreateUserDTO } from '@modules/user/repositories/UserDTO';
 import { User } from '@prisma/client';
-import { AppError } from 'src/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()

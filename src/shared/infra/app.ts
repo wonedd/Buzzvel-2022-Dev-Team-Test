@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import 'reflect-metadata';
-import { AppError } from 'src/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import cors from 'cors';
 import 'express-async-errors';
 

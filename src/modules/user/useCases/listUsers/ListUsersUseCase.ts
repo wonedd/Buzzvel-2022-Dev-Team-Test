@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { IUserRepository } from '@modules/user/repositories/IUserRepository';
 import { User } from '@prisma/client';
-import { AppError } from 'src/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()

@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES6",
     "module": "commonjs",
-    "rootDir": "./",
-    "baseUrl": "./src",
-    "outDir": "./dist",
+    "outDir": "dist",
+    "baseUrl": ".",
     "paths": {
-      "@modules/*": ["modules/*"],
-      "@config/*": ["config/*"],
-      "@shared/*": ["shared/*"],
-      "@errors/*": ["errors/*"],
-      "@utils/*": ["utils/*"]
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,

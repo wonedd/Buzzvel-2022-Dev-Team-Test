@@ -17,7 +17,6 @@
       "@config/*": [
         "src/config/*"
       ],
-      "@errors/*": ["errors/*"],
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,

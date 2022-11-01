@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { ensureAuthenticated } from '@shared/middlewares/ensureAuthenticated';
 import { CreateUserController } from '../useCases/createUser/CreateUserController';
 import { ListUsersController } from '../useCases/listUsers/ListUsersController';
 
@@ -10,4 +11,4 @@ const listUsersController = new ListUsersController();
 
 usersRouter.post('/', createUserController.handle);
 
-usersRouter.get('/', listUsersController.handle);
+usersRouter.get('/', ensureAuthenticated, listUsersController.handle);

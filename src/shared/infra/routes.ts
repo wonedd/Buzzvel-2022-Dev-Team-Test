@@ -1,11 +1,10 @@
 import { usersRouter } from '@modules/user/infra/users.routes';
 import { AuthenticateUserController } from '@modules/user/useCases/authenticateUser/AuthenticateUserController';
 import { Router } from 'express';
-import { ensureAuthenticated } from '@shared/middlewares/ensureAuthenticated';
 
 export const routes = Router();
 
-routes.use('/users', ensureAuthenticated, usersRouter);
+routes.use('/users', usersRouter);
 
 const authenticateRoutes = Router();
 

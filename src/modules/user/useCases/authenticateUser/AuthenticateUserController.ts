@@ -4,13 +4,14 @@ import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
 class AuthenticateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { linkedinUrl, githubUrl } = request.body;
+    const { linkedinUrl, githubUrl, name } = request.body;
 
     const authenticateUserUseCase = container.resolve(AuthenticateUserUseCase);
 
     const token = await authenticateUserUseCase.execute({
       linkedinUrl,
       githubUrl,
+      name,
     });
 
     return response.json(token);

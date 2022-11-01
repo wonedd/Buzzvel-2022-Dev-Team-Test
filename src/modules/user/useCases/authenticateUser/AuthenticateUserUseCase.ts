@@ -9,12 +9,14 @@ import { inject, injectable } from 'tsyringe';
 interface IRequest {
     linkedinUrl: string;
     githubUrl: string;
+    name:string;
 }
 
 interface IResponse { 
   user: {
     linkedinUrl: string;
     githubUrl: string;
+    name:string;
   };
   token: string;
 }
@@ -49,6 +51,7 @@ class AuthenticateUserUseCase {
       user:{
         linkedinUrl: user.linkedinUrl,
         githubUrl: user.githubUrl,
+        name: user.name,
       }
   }
 

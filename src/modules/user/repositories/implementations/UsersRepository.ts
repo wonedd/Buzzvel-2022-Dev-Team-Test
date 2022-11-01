@@ -27,6 +27,26 @@ class UsersRepository implements IUserRepository {
 
     return users;
   }
+
+  async findById(id: string): Promise<User | undefined> {
+    const user = await this.ormRepository.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    return user;
+  }
+
+  async findByGithubUrl(githubUrl: string): Promise<User | undefined> {
+    const user = await this.ormRepository.findFirst({
+      where: {
+        githubUrl,
+      },
+    });
+
+    return user;
+  }
 }
 
 export { UsersRepository };

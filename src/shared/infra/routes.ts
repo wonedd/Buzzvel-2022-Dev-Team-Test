@@ -5,6 +5,6 @@ export const routes = Router();
 const authenticateRoutes = Router();
 
 routes.use('/', usersRouter);
-routes.use(authenticateRoutes);
+routes.use('/sessions', authenticateRoutes);
 
 export { authenticateRoutes };

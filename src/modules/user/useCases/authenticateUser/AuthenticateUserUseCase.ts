@@ -9,7 +9,7 @@ import { inject, injectable } from 'tsyringe';
 interface IRequest {
     linkedinUrl: string;
     githubUrl: string;
-    name:string;
+    name: string;
 }
 
 interface IResponse { 
@@ -28,16 +28,20 @@ class AuthenticateUserUseCase {
     private usersRepository: IUserRepository,
   ) {}
 
-  async execute({ linkedinUrl, githubUrl }: IRequest): Promise<IResponse> {
+  async execute({ linkedinUrl, githubUrl, name }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByGithubUrl(githubUrl);
 
     if (!user) {
-      throw new AppError('Email or password incorrect!');
+      throw new AppError('User not found', 404);
     }
 
-    const dataMatch =  user.linkedinUrl === linkedinUrl;
+    const linkedinMatch =  user.linkedinUrl === linkedinUrl; 
+    const githubMatch = user.githubUrl === githubUrl;
+    const nameMatch = user.name === name;
 
-    if (!dataMatch) {
+
+
+    if (!linkedinMatch || !githubMatch || !nameMatch) {
       throw new AppError('Missing data');
     }
 

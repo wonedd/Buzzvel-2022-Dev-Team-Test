@@ -22,6 +22,14 @@ export class CreateUserUseCase {
       throw new AppError('Missing data to create the qrcode', 403);
     }
 
+    const userAlreadyExists = await this.userRepository.findByGithubUrl(
+      githubUrl,
+    );
+
+    if (userAlreadyExists) {
+      throw new AppError('User already exists', 403);
+    }
+
     const user = await this.userRepository.create({
       githubUrl,
       linkedinUrl,

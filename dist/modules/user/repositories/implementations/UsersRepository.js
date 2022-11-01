@@ -33,5 +33,25 @@ class UsersRepository {
             return users;
         });
     }
+    findById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.ormRepository.findFirst({
+                where: {
+                    id,
+                },
+            });
+            return user;
+        });
+    }
+    findByGithubUrl(githubUrl) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.ormRepository.findFirst({
+                where: {
+                    githubUrl,
+                },
+            });
+            return user;
+        });
+    }
 }
 exports.UsersRepository = UsersRepository;

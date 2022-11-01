@@ -1,7 +1,7 @@
 import { usersRouter } from '@modules/user/infra/users.routes';
 import { AuthenticateUserController } from '@modules/user/useCases/authenticateUser/AuthenticateUserController';
 import { Router } from 'express';
-import { ensureAuthenticated } from 'src/middlewares/ensureAuthenticated';
+import { ensureAuthenticated } from '@shared/middlewares/ensureAuthenticated';
 
 export const routes = Router();
 

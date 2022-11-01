@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.authenticateRoutes = exports.routes = void 0;
+const users_routes_1 = require("../../modules/user/infra/users.routes");
+const AuthenticateUserController_1 = require("../../modules/user/useCases/authenticateUser/AuthenticateUserController");
+const express_1 = require("express");
+const ensureAuthenticated_1 = require("src/middlewares/ensureAuthenticated");
+exports.routes = (0, express_1.Router)();
+exports.routes.use('/users', ensureAuthenticated_1.ensureAuthenticated, users_routes_1.usersRouter);
+const authenticateRoutes = (0, express_1.Router)();
+exports.authenticateRoutes = authenticateRoutes;
+const authenticateUserController = new AuthenticateUserController_1.AuthenticateUserController();
+authenticateRoutes.post('/sessions', authenticateUserController.handle);

@@ -22,6 +22,11 @@ export class CreateUserUseCase {
       throw new AppError('Missing data to create the qrcode', 403);
     }
 
+    const selectedUser = await this.userRepository.findByGithubUrl(githubUrl);
+
+    if (selectedUser) {
+      await this.userRepository.delete(selectedUser.id);
+    }
     const user = await this.userRepository.create({
       githubUrl,
       linkedinUrl,

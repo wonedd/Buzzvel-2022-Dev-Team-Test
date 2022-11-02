@@ -6,6 +6,7 @@ interface IUserRepository {
   list(): Promise<User[]>;
   findById(id: string): Promise<User | undefined>;
   findByGithubUrl(githubUrl: string): Promise<User | undefined>;
+  delete(id: string): Promise<void>;
 }
 
 export { IUserRepository };

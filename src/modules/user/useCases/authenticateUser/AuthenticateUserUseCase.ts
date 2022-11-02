@@ -7,9 +7,7 @@ import { inject, injectable } from 'tsyringe';
 
 
 interface IRequest {
-    linkedinUrl: string;
     githubUrl: string;
-    name: string;
 }
 
 interface IResponse { 
@@ -28,23 +26,14 @@ class AuthenticateUserUseCase {
     private usersRepository: IUserRepository,
   ) {}
 
-  async execute({ linkedinUrl, githubUrl, name }: IRequest): Promise<IResponse> {
+  async execute({  githubUrl }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByGithubUrl(githubUrl);
 
     if (!user) {
       throw new AppError('User not found', 404);
     }
 
-    const linkedinMatch =  user.linkedinUrl === linkedinUrl; 
-    const githubMatch = user.githubUrl === githubUrl;
-    const nameMatch = user.name === name;
-
-
-
-    if (!linkedinMatch || !githubMatch || !nameMatch) {
-      throw new AppError('Missing data');
-    }
-
+  
     const token = sign({}, '678477a5d61962a6c7d8f78e2d1ef291', {
       subject: user.id,
       expiresIn: '1d',

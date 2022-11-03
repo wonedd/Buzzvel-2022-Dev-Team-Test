@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import 'reflect-metadata';
 import { AppError } from '@shared/errors/AppError';
-import cors from 'cors';
 import 'express-async-errors';
 
 import express, { Request, Response, NextFunction } from 'express';
@@ -12,8 +11,6 @@ import '@shared/container';
 const app = express();
 
 app.use(express.json());
-
-app.use(cors());
 
 app.use(routes);
 

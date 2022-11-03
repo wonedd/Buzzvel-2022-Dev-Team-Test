@@ -1,8 +1,8 @@
-import { authenticateRoutes } from '@modules/user/infra/authenticate.routes';
+import { authenticateRouter } from '@modules/user/infra/authenticate.routes';
 import { usersRouter } from '@modules/user/infra/users.routes';
 import { Router } from 'express';
 
 export const routes = Router();
 
 routes.use('/', usersRouter);
-routes.use('/sessions', authenticateRoutes);
+routes.use('/sessions', authenticateRouter);

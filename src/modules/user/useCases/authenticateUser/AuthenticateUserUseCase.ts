@@ -7,7 +7,7 @@ import { inject, injectable } from 'tsyringe';
 
 
 interface IRequest {
-    githubUrl: string;
+  id: string;
 }
 
 interface IResponse { 
@@ -26,8 +26,8 @@ class AuthenticateUserUseCase {
     private usersRepository: IUserRepository,
   ) {}
 
-  async execute({  githubUrl }: IRequest): Promise<IResponse> {
-    const user = await this.usersRepository.findByGithubUrl(githubUrl);
+  async execute({  id }: IRequest): Promise<IResponse> {
+    const user = await this.usersRepository.findById(id);
 
     if (!user) {
       throw new AppError('User not found', 404);

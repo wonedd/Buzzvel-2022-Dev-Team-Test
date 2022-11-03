@@ -21,40 +21,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthenticateUserUseCase = void 0;
+exports.CreateQrcodeUseCase = void 0;
 const AppError_1 = require("../../../../shared/errors/AppError");
-const jsonwebtoken_1 = require("jsonwebtoken");
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const tsyringe_1 = require("tsyringe");
-let AuthenticateUserUseCase = class AuthenticateUserUseCase {
-    constructor(usersRepository) {
-        this.usersRepository = usersRepository;
+let CreateQrcodeUseCase = class CreateQrcodeUseCase {
+    constructor(qrcodesRepository) {
+        this.qrcodesRepository = qrcodesRepository;
     }
-    execute({ githubUrl }) {
+    execute({ qrcode, qrcodeId, }) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield this.usersRepository.findByGithubUrl(githubUrl);
-            if (!user) {
-                throw new AppError_1.AppError('User not found', 404);
+            if (!qrcode || !qrcodeId) {
+                throw new AppError_1.AppError('Missing data to create the qrcode', 403);
             }
-            const token = (0, jsonwebtoken_1.sign)({}, '678477a5d61962a6c7d8f78e2d1ef291', {
-                subject: user.id,
-                expiresIn: '1d',
+            const qr = yield this.qrcodesRepository.create({
+                qrcode,
+                qrcodeId,
             });
-            const tokenReturn = {
-                token,
-                user: {
-                    linkedinUrl: user.linkedinUrl,
-                    githubUrl: user.githubUrl,
-                    name: user.name,
-                }
-            };
-            return tokenReturn;
+            if (qr) {
+                yield this.qrcodesRepository.delete(qr.qrcodeId);
+            }
+            return qr;
         });
     }
 };
-AuthenticateUserUseCase = __decorate([
+CreateQrcodeUseCase = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)('UsersRepository')),
+    __param(0, (0, tsyringe_1.inject)('QrcodesRepository')),
     __metadata("design:paramtypes", [Object])
-], AuthenticateUserUseCase);
-exports.AuthenticateUserUseCase = AuthenticateUserUseCase;
+], CreateQrcodeUseCase);
+exports.CreateQrcodeUseCase = CreateQrcodeUseCase;

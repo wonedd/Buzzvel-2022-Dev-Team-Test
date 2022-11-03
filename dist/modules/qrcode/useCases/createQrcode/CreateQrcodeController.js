@@ -9,19 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthenticateUserController = void 0;
+exports.CreateQrcodeController = void 0;
 const tsyringe_1 = require("tsyringe");
-const AuthenticateUserUseCase_1 = require("./AuthenticateUserUseCase");
-class AuthenticateUserController {
+const CreateQrcodeUseCase_1 = require("./CreateQrcodeUseCase");
+class CreateQrcodeController {
     handle(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { githubUrl } = request.body;
-            const authenticateUserUseCase = tsyringe_1.container.resolve(AuthenticateUserUseCase_1.AuthenticateUserUseCase);
-            const token = yield authenticateUserUseCase.execute({
-                githubUrl,
+            const { qrcode, qrcodeId } = request.params;
+            const createQrcodeUC = tsyringe_1.container.resolve(CreateQrcodeUseCase_1.CreateQrcodeUseCase);
+            const qr = yield createQrcodeUC.execute({
+                qrcode,
+                qrcodeId,
             });
-            return response.json(token);
+            return response.status(201).json(qr);
         });
     }
 }
-exports.AuthenticateUserController = AuthenticateUserController;
+exports.CreateQrcodeController = CreateQrcodeController;

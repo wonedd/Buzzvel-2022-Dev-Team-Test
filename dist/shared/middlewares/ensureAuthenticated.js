@@ -27,7 +27,7 @@ function ensureAuthenticated(request, response, next) {
             const usersRepository = new UsersRepository_1.UsersRepository();
             const user = yield usersRepository.findById(user_id);
             if (!user) {
-                throw new AppError_1.AppError('User does not exists!', 401);
+                throw new AppError_1.AppError('Something wrong!', 401);
             }
             request.user = {
                 id: user_id,

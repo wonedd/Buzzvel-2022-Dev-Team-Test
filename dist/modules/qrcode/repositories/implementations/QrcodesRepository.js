@@ -9,58 +9,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersRepository = void 0;
+exports.QrcodesRepository = void 0;
 const prisma_1 = require("../../../../shared/infra/prisma");
-class UsersRepository {
+class QrcodesRepository {
     constructor() {
-        this.ormRepository = prisma_1.prisma.user;
+        this.ormRepository = prisma_1.prisma.qrcode;
     }
-    create({ githubUrl, linkedinUrl, name, }) {
+    create({ qrcode, qrcodeId }) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield this.ormRepository.create({
+            const qr = yield this.ormRepository.create({
                 data: {
-                    githubUrl,
-                    linkedinUrl,
-                    name,
+                    qrcode,
+                    qrcodeId,
                 },
             });
-            return user;
+            return qr;
         });
     }
     list() {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = yield this.ormRepository.findMany();
-            return users;
+            const qrs = yield this.ormRepository.findMany();
+            return qrs;
         });
     }
-    findById(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const user = yield this.ormRepository.findFirst({
-                where: {
-                    id,
-                },
-            });
-            return user;
-        });
-    }
-    findByGithubUrl(githubUrl) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const user = yield this.ormRepository.findFirst({
-                where: {
-                    githubUrl,
-                },
-            });
-            return user;
-        });
-    }
-    delete(id) {
+    delete(qrcodeId) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.ormRepository.delete({
                 where: {
-                    id,
+                    qrcodeId,
                 },
             });
         });
     }
 }
-exports.UsersRepository = UsersRepository;
+exports.QrcodesRepository = QrcodesRepository;

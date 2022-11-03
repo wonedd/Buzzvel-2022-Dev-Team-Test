@@ -4,12 +4,12 @@ import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
 class AuthenticateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { githubUrl } = request.body;
+    const { id } = request.body;
 
     const authenticateUserUseCase = container.resolve(AuthenticateUserUseCase);
 
     const token = await authenticateUserUseCase.execute({
-      githubUrl,
+      id,
     });
 
     return response.json(token);

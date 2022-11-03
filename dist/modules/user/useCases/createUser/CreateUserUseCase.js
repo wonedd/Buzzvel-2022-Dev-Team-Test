@@ -33,9 +33,9 @@ let CreateUserUseCase = class CreateUserUseCase {
             if (!githubUrl || !linkedinUrl || !name) {
                 throw new AppError_1.AppError('Missing data to create the qrcode', 403);
             }
-            const userAlreadyExists = yield this.userRepository.findByGithubUrl(githubUrl);
-            if (userAlreadyExists) {
-                throw new AppError_1.AppError('User already exists', 403);
+            const selectedUser = yield this.userRepository.findByGithubUrl(githubUrl);
+            if (selectedUser) {
+                yield this.userRepository.delete(selectedUser.id);
             }
             const user = yield this.userRepository.create({
                 githubUrl,

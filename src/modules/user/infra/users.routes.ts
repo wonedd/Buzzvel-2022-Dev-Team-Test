@@ -16,4 +16,4 @@ usersRouter.post('/', createUserController.handle);
 
 usersRouter.get('/', ensureAuthenticated, listUsersController.handle);
 
-usersRouter.get('/user', ensureAuthenticated, getUserController.handle);
+usersRouter.get('/user/:token', ensureAuthenticated, getUserController.handle);

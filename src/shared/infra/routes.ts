@@ -6,3 +6,4 @@ export const routes = Router();
 
 routes.use('/', usersRouter);
 routes.use('/sessions', authenticateRouter);
+routes.use(usersRouter);

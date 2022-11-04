@@ -26,7 +26,7 @@ class AuthenticateUserUseCase {
     private usersRepository: IUserRepository,
   ) {}
 
-  async execute({  id }: IRequest): Promise<IResponse> {
+  async execute({ id }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findById(id);
 
     if (!user) {
